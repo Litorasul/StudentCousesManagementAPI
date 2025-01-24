@@ -7,10 +7,12 @@ namespace StudentCousesManagementAPI.Services
     public class StudentService : IStudentService
     {
         private readonly ApplicationDbContext _context;
+        private readonly IStudentCourseService _studentCourseService;
 
-        public StudentService(ApplicationDbContext context)
+        public StudentService(ApplicationDbContext context, IStudentCourseService studentCourseService)
         {
             _context = context;
+            _studentCourseService = studentCourseService;
         }
         public StudentDto GetStudentById(int id)
         {
@@ -57,6 +59,7 @@ namespace StudentCousesManagementAPI.Services
             var student = _context.Students.Where(s => s.Id == id).FirstOrDefault();
             if (student == null) { throw new NullReferenceException($"Student with ID: {id} does not exist in the Database!"); }
 
+            await _studentCourseService.DeleteAllStudentCoursesByStudentOrCourse(true, id);
             _context.Students.Remove(student);
             await _context.SaveChangesAsync();
         }
