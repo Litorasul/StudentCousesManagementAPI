@@ -14,6 +14,8 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 builder.Services.AddTransient<IStudentService, StudentService>();
+builder.Services.AddTransient<ICourseService, CourseService>();
+builder.Services.AddTransient<IStudentCourseService, StudentCourseService>();
 
 var app = builder.Build();
 
