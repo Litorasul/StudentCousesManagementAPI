@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using StudentCousesManagementAPI.Data;
+using StudentCousesManagementAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+builder.Services.AddTransient<IStudentService, StudentService>();
 
 var app = builder.Build();
 
