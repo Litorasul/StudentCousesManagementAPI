@@ -127,7 +127,11 @@ namespace StudentCousesManagementAPI.Services
             course.StartDate = courseDto.StartDate;
             course.EndDate = courseDto.EndDate;
             course.Capacity = courseDto.Capacity;
-            course.Stage = courseDto.Stage;
+            if (courseDto.Stage != null)
+            {
+                course.Stage = (ProgressStage)courseDto.Stage;
+            }
+
 
             return await _context.SaveChangesAsync() > 0;
         }

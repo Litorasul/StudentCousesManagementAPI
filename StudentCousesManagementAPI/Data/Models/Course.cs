@@ -9,7 +9,7 @@ namespace StudentCousesManagementAPI.Data.Models
         public int Id { get; set; }
         [Required(ErrorMessage = "Course Name is required.")]
         public string Name { get; set; }
-        public string Description { get; set; }
+        public string? Description { get; set; }
         [Required(ErrorMessage = "Start Date is required.")]
         public DateOnly StartDate { get; set; }
         [Required(ErrorMessage = "End Date is required.")]
