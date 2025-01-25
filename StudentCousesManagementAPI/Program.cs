@@ -17,6 +17,8 @@ builder.Services.AddTransient<IStudentService, StudentService>();
 builder.Services.AddTransient<ICourseService, CourseService>();
 builder.Services.AddTransient<IStudentCourseService, StudentCourseService>();
 
+builder.Services.AddHostedService<DailyCourseProgressTracker>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
